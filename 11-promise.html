@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        const p = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                const randomNumber = Math.floor(Math.random() * 100)
+                if(randomNumber > 50) {
+                    resolve(`结果是${randomNumber},请求成功`)
+                }else {
+                    reject(`结果是${randomNumber},请求失败`)
+                }
+
+            },1000)
+        })
+
+        p.then(function(suc) {
+            console.log(suc);
+        },function(err) {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

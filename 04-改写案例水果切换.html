@@ -1,0 +1,74 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-16 15:35:48
+ * @LastEditTime: 2020-11-16 15:57:27
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue\改写案例水果切换.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .tab div {
+            display: none;
+        }
+
+        .tab .current {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li v-for="(item, index) in list" :key="item.id" @click="change(index)" :class="{active:cur==index}" >
+                    {{item.title}}
+                </li>
+            </ul>
+            <div v-for="(item, index) in list" :key="item.id" :class="{current:cur==index}">
+                <img :src="item.path">
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/vue.min.js"></script>
+    <script>
+     let vm = new Vue({
+         el: "#app",
+         data: {
+            list: [{
+                    id: 1,
+                    title: 'apple',
+                    path: './img/apple.png'
+                }, {
+                    id: 2,
+                    title: 'orange',
+                    path: './img/orange.png'
+                }, {
+                    id: 3,
+                    title: 'lemon',
+                    path: './img/lemon.png'
+                }],
+                cur: 0,
+         },
+         methods: {
+             change(index) {
+                 this.cur = index
+             }
+         }
+
+     })
+        
+    
+    </script>
+</body>
+</html>

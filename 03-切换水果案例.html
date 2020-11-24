@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .tab div {
+            display: none;
+        }
+
+        .tab .current {
+            display: block;
+        }
+    </style>
+
+<body>
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <!--  
+                    1、绑定key的作用 提高Vue的性能 
+                    2、 key 需要是唯一的标识 所以需要使用 id，也可以使用 index，index 也是唯一的 
+                    3、 item 是数组中对应的每一项  
+                    4、 index 是每一项的索引
+                -->
+                <li :key='item.id' :class="index===currentIndex ? 'active' : ''" v-for='(item,index) in list'
+                    @click="change(index)">
+                    {{item.title}}</li>
+            </ul>
+            <div :key='item.id' :class="index===currentIndex ? 'current' : ''" v-for='(item, index) in list'>
+                <!-- :  是 v-bind 的简写   绑定属性使用 v-bind -->
+                <img :src="item.path">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    id: 1,
+                    title: 'apple',
+                    path: 'img/apple.png'
+                }, {
+                    id: 2,
+                    title: 'orange',
+                    path: 'img/orange.png'
+                }, {
+                    id: 3,
+                    title: 'lemon',
+                    path: 'img/lemon.png'
+                }],
+                currentIndex: 0
+            },
+            methods: {
+                change(index) {
+                    this.currentIndex = index;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <router-link to="/user/1">User1</router-link>
+        <router-link to="/user/2">User2</router-link>
+        <router-link to="/user/3">User3</router-link>
+        <router-link to="/login">Login</router-link>
+
+        <router-view></router-view>
+    </div>
+
+
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router_3.0.2.js"></script>
+
+    <script>
+        const User = {
+            props:['id'],
+            template: `<div> User
+                   用户的id为{{id}}
+                </div>`
+        }
+        const Login = {
+            template: `<div>
+                Login
+                <hr>
+                
+                <router-link to="/login/tab1">Tab1</router-link>
+                <router-link to="/login/tab2">Tab2</router-link>
+
+                <router-view></router-view>
+                
+                
+                
+                </div>`
+        }
+
+        const Tab1 = {
+            template: `
+                <div>tab1</div>
+            `
+        }
+
+        const Tab2 = {
+            template: `
+                <div>tab2</div>
+            `
+        }
+
+        const route = new VueRouter({
+            routes: [{
+                    path: '/',
+                    redirect: '/user',
+                },
+                {
+                    path: '/user/:id',
+                    component: User,
+                    props: true
+
+                },
+               {
+                    path: '/login',
+                    component: Login,
+                    redirect: '/login/tab1',
+                    children: [{
+                            path: '/login/tab1',
+                            component: Tab1
+                        },
+                        {
+                            path: '/login/tab2',
+                            component: Tab2
+                        },
+                    ]
+                }
+            ]
+        })
+
+        new Vue({
+            el: '#app',
+            data: {},
+            router: route,
+
+        })
+    </script>
+</body>
+
+</html>

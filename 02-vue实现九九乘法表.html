@@ -1,0 +1,34 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-16 16:44:37
+ * @LastEditTime: 2020-11-16 16:48:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue\vue实现九九乘法表.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><div id="app">
+    <p v-for="n in 9">
+        <b v-for="i in n">
+{{i}} x {{n}} = {{i*n}}
+        </b>
+    </p>
+
+</div>
+
+
+    <script src="js/vue.min.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app'
+        })
+
+    </script>
+</body>
+</html>
